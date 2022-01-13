@@ -11,6 +11,7 @@ docker build -t privacyidea:latest .
 docker run --rm -it -v $(pwd)/data:/pi/mnt \
            -e SECRET_KEY='bigsecret' \
            -e PI_PEPPER='dontusethis' \
+           -p 8000:8000 \
            privacyidea:latest
 ```
 
@@ -24,6 +25,6 @@ docker run --rm -it -v $(pwd)/data:/pi/mnt \
 | `DATABASE_URI`           | `sqlite:////pi/mnt/data.sqlite` | Used to connect to db. See [here](https://privacyidea.readthedocs.io/en/latest/faq/mysqldb.html#mysqldb) for more |
 | `PI_LOGCONFIG`           | `/pi/logging.yml`               | [Log config location](https://privacyidea.readthedocs.io/en/latest/installation/system/logging.html#debug-log) |
 | `PI_ENCFILE`             | `/pi/mnt/enckey`                | This is used to encrypt the token data and token passwords. File will be generated at specified location if one does not exist |
-| `PI_AUDIT_KEY_PRIVATE`   | `/pi/mnt/certs/private.pem`     | This is used to sign the audit log. File will be generated at specified location if one does not exist |
-| `PII_AUDIT_KEY_PUBLIC`   | `/pi/mnt/certs/public.pem`      | This is used to sign the audit log. File will be generated at specified location if one does not exist |
+| `PI_AUDIT_KEY_PRIVATE`   | `/pi/mnt/audit-private.pem`     | This is used to sign the audit log. File will be generated at specified location if one does not exist |
+| `PII_AUDIT_KEY_PUBLIC`   | `/pi/mnt/audit-public.pem`      | This is used to sign the audit log. File will be generated at specified location if one does not exist |
 | `PRIVACYIDEA_CONFIGFILE` | `/pi/pi.cfg`                    | [Config file](https://privacyidea.readthedocs.io/en/latest/installation/system/inifile.html#cfgfile) location |
