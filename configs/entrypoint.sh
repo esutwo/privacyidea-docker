@@ -14,17 +14,21 @@ if [ "$DB_CHECK" = 'True' ]; then
     done
 fi
 
+# Check if DB is initialized
+if ! /opt/privacyidea/bin/pi-manage event list > /dev/null 2>&1; then
+    echo "Creating DB tables"
+    /opt/privacyidea/bin/pi-manage createdb
+    echo "Performing DB Stamp"
+    /opt/privacyidea/bin/pi-manage db stamp head -d /opt/privacyidea/lib/privacyidea/migrations/
+fi
+
 if [ ! -f "$PI_ENCFILE" ]; then
+    echo "Creating encfile at $PI_ENCFILE"
     /opt/privacyidea/bin/pi-manage create_enckey
 fi
 if [ ! -f "$PI_AUDIT_KEY_PRIVATE" ]; then
+    echo "Creating certs at $PI_AUDIT_KEY_PRIVATE and $PI_AUDIT_KEY_PUBLIC"
     /opt/privacyidea/bin/pi-manage create_audit_keys
-fi
-
-# Check if DB is initialized
-if ! /opt/privacyidea/bin/pi-manage event list &> /dev/null; then
-    /opt/privacyidea/bin/pi-manage createdb
-    /opt/privacyidea/bin/pi-manage db stamp head -d /opt/privacyidea/lib/privacyidea/migrations/
 fi
 
 if [ "$DEBUG" = 'True' ]; then
