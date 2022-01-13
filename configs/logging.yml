@@ -1,0 +1,29 @@
+version: 1
+formatters:
+  detail:
+    class: privacyidea.lib.log.SecureFormatter
+    format: '[%(asctime)s][%(process)d][%(thread)d][%(levelname)s][%(name)s:%(lineno)d] %(message)s'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: detail
+    level: INFO
+    stream: ext://sys.stdout
+  file:
+    # Rollover the logfile at midnight
+    class: logging.handlers.RotatingFileHandler
+    backupCount: 5
+    maxBytes: 1000000
+    formatter: detail
+    level: INFO
+    filename: /pi/mnt/privacyidea.log
+loggers:
+  # The logger name is the qualname
+  privacyidea:
+    handlers:
+    - file
+    - console
+    level: INFO
+root:
+  level: WARNING
