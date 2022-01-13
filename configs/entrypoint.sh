@@ -4,9 +4,8 @@
 if [ "$DB_CHECK" = 'True' ]; then
 
     # these are pretty awful and could use some optimization
-    host = $(echo $DATABASE_URI | awk -F '@' '{print $2}' | awk -F '/' '{print $1}' | awk -F ':' '{print $1}')
-    port = $(echo $DATABASE_URI | awk -F '@' '{print $2}' | awk -F '/' '{print $1}' | awk -F ':' '{print ($2=="" ? "3306" : $2)}')
-
+    host=$(echo $DATABASE_URI | awk -F '@' '{print $2}' | awk -F '/' '{print $1}' | awk -F ':' '{print $1}')
+    port=$(echo $DATABASE_URI | awk -F '@' '{print $2}' | awk -F '/' '{print $1}' | awk -F ':' '{print ($2=="" ? "3306" : $2)}')
     status=$(nc -z $host $port; echo $?)
     while [ $status != 0 ]
     do

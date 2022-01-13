@@ -20,7 +20,7 @@ docker-deploy:
       --label "org.opencontainers.image.created=$CI_JOB_STARTED_AT"
       --label "org.opencontainers.image.revision=$CI_COMMIT_SHA"
       --label "org.opencontainers.image.version=$CI_COMMIT_REF_NAME"
-      --build-arg BUILD_VERSION="$rundeck_version"
+      --build-arg PI_VERSION="$pi_version"
       --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
       --tag $CI_REGISTRY_IMAGE:$pi_version
       .
