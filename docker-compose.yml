@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  
+  privacyidea:
+    build: .
+    container_name: privacyidea
+    environment:
+      SECRET_KEY: "changeme"
+      PI_PEPPER: "changeme"
+      DB_CHECK: "True"
+      DATABASE_URI: "mysql+pymysql://pi:mysqlpwd@db/pi?charset=utf8"
+    ports:
+      - 8000:8000
+    volumes:
+      - pi:/pi/mnt
+
+  db:
+    image: mariadb:10.7
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: "rootpwd"
+      MARIADB_DATABASE: "pi"
+      MARIADB_USER: "pi"
+      MARIADB_PASSWORD: "mysqlpwd"
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  db:
+  pi:

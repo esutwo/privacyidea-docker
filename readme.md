@@ -15,6 +15,12 @@ docker run --rm -it -v $(pwd)/data:/pi/mnt \
            privacyidea:latest
 ```
 
+### Create an admin user
+
+```bash
+docker exec -it privacyidea /opt/privacyidea/bin/pi-manage admin bob -p bobspwd
+```
+
 ## Environment Vars
 
 | Var                      | Default                         | Description |
@@ -23,6 +29,7 @@ docker run --rm -it -v $(pwd)/data:/pi/mnt \
 | `SECRET_KEY`             | random                          | Used to encrypt values. Should be unique |
 | `PI_PEPPER`              | random                          | Used to encrypt admin passwords. Should be unique |
 | `DATABASE_URI`           | `sqlite:////pi/mnt/data.sqlite` | Used to connect to db. See [here](https://privacyidea.readthedocs.io/en/latest/faq/mysqldb.html#mysqldb) for more |
+| `DB_CHECK`               | <NONE>                          | Starts a while loop waiting for the database to come online when set to `True` |
 | `PI_LOGCONFIG`           | `/pi/logging.yml`               | [Log config location](https://privacyidea.readthedocs.io/en/latest/installation/system/logging.html#debug-log) |
 | `PI_ENCFILE`             | `/pi/mnt/enckey`                | This is used to encrypt the token data and token passwords. File will be generated at specified location if one does not exist |
 | `PI_AUDIT_KEY_PRIVATE`   | `/pi/mnt/audit-private.pem`     | This is used to sign the audit log. File will be generated at specified location if one does not exist |
