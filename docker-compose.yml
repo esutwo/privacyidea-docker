@@ -10,6 +10,11 @@ services:
       PI_PEPPER: "changeme"
       DB_CHECK: "True"
       DATABASE_URI: "mysql+pymysql://pi:mysqlpwd@db/pi?charset=utf8"
+      # Maximum concurrent requests 
+      # when using workers and threads is (2*CPU)+1
+      # the below is for a quad core system: (2*4)+1 == 9 == 3 * 3
+      GUNICORN_WORKERS: 3
+      GUNICORN_WORKERS: 3
     ports:
       - 8000:8000
     volumes:

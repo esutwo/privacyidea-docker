@@ -35,5 +35,5 @@ if [ "$DEBUG" = 'True' ]; then
     echo "DEBUG mode enabled"
     pi-manage runserver
 else
-    /opt/privacyidea/bin/gunicorn 'privacyidea.app:create_app(config_name="production")' -b 0.0.0.0:8000
+    /opt/privacyidea/bin/gunicorn --workers=$GUNICORN_WORKERS --threads=$GUNICORN_THREADS 'privacyidea.app:create_app(config_name="production")' -b 0.0.0.0:8000
 fi
