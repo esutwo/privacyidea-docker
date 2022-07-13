@@ -9,6 +9,7 @@ ENV PI_ENCFILE='/pi/mnt/enckey'
 ENV PI_AUDIT_KEY_PRIVATE='/pi/mnt/audit-private.pem'
 ENV PI_AUDIT_KEY_PUBLIC='/pi/mnt/audit-public.pem'
 ENV PI_LOGCONFIG='/pi/logging.yml'
+ENV PI_SCRIPT_SMSPROVIDER_DIRECTORY='/pi/scripts'
 ENV GUNICORN_WORKERS=1
 ENV GUNICORN_THREADS=1
 
