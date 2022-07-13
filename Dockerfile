@@ -29,5 +29,6 @@ RUN \
     pip install privacyidea==${PI_VERSION}
 
 ADD ./configs/ /pi/
+ADD ./scripts /pi/
 
 ENTRYPOINT [ "/pi/entrypoint.sh" ]
