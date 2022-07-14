@@ -15,7 +15,7 @@ ENV GUNICORN_THREADS=1
 
 RUN \
     # Install netcat
-    apt-get update && apt-get install netcat -y && apt-get clean && \
+    apt-get update && apt-get install curl netcat -y && apt-get clean && \
     # Setup ENV & Install Gunicorn
     mkdir -p /pi/mnt/log /pi/mnt/certs && \
     pip install --upgrade pip && \
@@ -29,6 +29,6 @@ RUN \
     pip install privacyidea==${PI_VERSION}
 
 ADD ./configs/ /pi/
-ADD ./scripts /pi/
+ADD ./scripts/ /pi/scripts/
 
 ENTRYPOINT [ "/pi/entrypoint.sh" ]
