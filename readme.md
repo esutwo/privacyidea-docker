@@ -18,7 +18,7 @@ docker run --rm -it -v $(pwd)/data:/pi/mnt \
 ### Create an admin user
 
 ```bash
-docker exec -it privacyidea /opt/privacyidea/bin/pi-manage admin bob -p bobspwd
+docker exec -it privacyidea pi-manage admin add bob -p bobspwd
 ```
 
 ## Environment Vars

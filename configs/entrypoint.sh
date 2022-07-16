@@ -31,6 +31,11 @@ if [ ! -f "$PI_AUDIT_KEY_PRIVATE" ]; then
     /opt/privacyidea/bin/pi-manage create_audit_keys
 fi
 
+if [ "$HIDE_WELCOME" = 'True' ]; then
+    echo "Hiding ALL welcome dialogs. Only perform this in a development environment." 
+    sed -i "s/\$('#dialogWelcome')\.modal(\"show\")/\$('#dialogWelcome')\.modal(\"hide\")/g" /opt/privacyidea/lib/python3.7/site-packages/privacyidea/static/components/login/controllers/loginControllers.js
+fi
+
 if [ "$DEBUG" = 'True' ]; then
     echo "DEBUG mode enabled"
     pi-manage runserver
